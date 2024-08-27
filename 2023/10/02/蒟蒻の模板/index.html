@@ -26,7 +26,7 @@
 <meta property="og:description" content="蒟蒻 Rainbow-Automaton 的模板 备战  只是目前会的 然而目前啥也不会… 代码注意事项 不要使用using namespace std;  min 和 max 都可以直接 std::min std::max 吧  关同步 #define fastread std::ios_sync_with_stdio (false); cin.tie (0);  学习 jiangly usin">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-02T14:01:54.000Z">
-<meta property="article:modified_time" content="2024-08-27T01:34:27.737Z">
+<meta property="article:modified_time" content="2024-08-27T09:49:13.047Z">
 <meta property="article:author" content="rainbow-auto">
 <meta property="article:tag" content="OI">
 <meta property="article:tag" content="模板">
@@ -585,8 +585,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-27 09:34:27</span>
-            <span class="mobile">2024-08-27 09:34:27</span>
+            <span class="desktop">2024-08-27 17:49:13</span>
+            <span class="mobile">2024-08-27 17:49:13</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -777,6 +777,9 @@ mjx-container[display="true"] + br {
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">merge</span> <span class="params">(i64 &amp;m1, i64 &amp;a1, i64 m2, i64 a2)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (m1 &lt; m2) { std::<span class="built_in">swap</span> (m1, m2); std::<span class="built_in">swap</span> (a1, a2); }           </span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (a1 % m2 != a2) { a1 += m1; }</span><br><span class="line"></span><br><span class="line">    m1 = <span class="built_in">lcm</span> (m1, m2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
 
 <p><del>真的超级好写啊啊啊</del></p>
+<p>upd: 判无解版本:</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">merge</span> <span class="params">(i64&amp; m1, i64&amp; a1, i64 m2, i64 a2)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (m1 &lt; m2) { std::<span class="built_in">swap</span> (m1, m2); std::<span class="built_in">swap</span> (a1, a2); }</span><br><span class="line">	<span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (a1 % m2 != a2) { </span><br><span class="line">		<span class="keyword">if</span> (++tot &gt; m2 + <span class="number">1</span>) { <span class="keyword">return</span> <span class="literal">false</span>; } </span><br><span class="line">		a1 += m1; </span><br><span class="line">	}</span><br><span class="line">	m1 = <span class="built_in">lcm</span> (m1, m2);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+
 <h4 id="扩展中国剩余定理"><a href="#扩展中国剩余定理" class="headerlink" title="扩展中国剩余定理"></a>扩展中国剩余定理</h4><p>不用害怕, zhx的大数翻倍法本身就能合并两个同余方程</p>
 <p>所以合并部分代码跟上面一样</p>
 <h3 id="高维前缀和"><a href="#高维前缀和" class="headerlink" title="高维前缀和"></a>高维前缀和</h3><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">22</span>; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> S = <span class="number">0</span>; S &lt; (<span class="number">1</span> &lt;&lt; <span class="number">22</span>); S++) {</span><br><span class="line">        <span class="keyword">if</span> (S &amp; (<span class="number">1</span> &lt;&lt; i)) { sum[S] = sum[S] + sum[S ^ (<span class="number">1</span> &lt;&lt; i)]; }</span><br><span class="line">    }</span><br><span class="line">}	</span><br></pre></td></tr></table></figure></div>
@@ -854,7 +857,7 @@ mjx-container[display="true"] + br {
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-08-27 09:34:27
+                    :</strong> 2024-08-27 17:49:13
             </li>
         
         <li>
