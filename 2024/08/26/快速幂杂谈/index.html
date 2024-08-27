@@ -18,15 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="快速幂杂谈总觉得快速幂挺深刻的 普通快速幂123456789101112i64 ksm (i64 a, i64 b, i64 mod) &#123;    i64 res &#x3D; 1;    i64 base &#x3D; a;    while (b) &#123;        if (b &amp; 1) &#123; (res *&#x3D; base) %&#x3D; mod; &#125;        (base *">
+        <meta name="description" content="快速幂杂谈总觉得快速幂挺深刻的 普通快速幂123456789101112i64 ksm (i64 a, i64 b, i64 mod) &#123;    i64 res &#x3D; 1;    i64 base &#x3D; a % mod;    while (b) &#123;        if (b &amp; 1) &#123; (res *&#x3D; base) %&#x3D; mod; &#125;        (">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速幂杂谈">
 <meta property="og:url" content="https://rainbow-auto.github.io/2024/08/26/%E5%BF%AB%E9%80%9F%E5%B9%82%E6%9D%82%E8%B0%88/index.html">
 <meta property="og:site_name" content="Rainbow-Automaton&#39;s blog">
-<meta property="og:description" content="快速幂杂谈总觉得快速幂挺深刻的 普通快速幂123456789101112i64 ksm (i64 a, i64 b, i64 mod) &#123;    i64 res &#x3D; 1;    i64 base &#x3D; a;    while (b) &#123;        if (b &amp; 1) &#123; (res *&#x3D; base) %&#x3D; mod; &#125;        (base *">
+<meta property="og:description" content="快速幂杂谈总觉得快速幂挺深刻的 普通快速幂123456789101112i64 ksm (i64 a, i64 b, i64 mod) &#123;    i64 res &#x3D; 1;    i64 base &#x3D; a % mod;    while (b) &#123;        if (b &amp; 1) &#123; (res *&#x3D; base) %&#x3D; mod; &#125;        (">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-26T14:06:28.000Z">
-<meta property="article:modified_time" content="2024-08-26T14:17:54.629Z">
+<meta property="article:modified_time" content="2024-08-27T00:17:21.419Z">
 <meta property="article:author" content="rainbow-auto">
 <meta name="twitter:card" content="summary">
     
@@ -82,7 +82,7 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"rainbow-auto.github.io","root":"/","language":"zh-CN","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"雲のようにそっとそっと","subtitle":{"text":["どこまでもずっとずっと前へ"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/rainbow-auto","instagram":null,"zhihu":"https://www.zhihu.com/people/rainbow-auto","twitter":null,"email":"caotianlang@outlook.com","fa-solid fa-code":"https://www.luogu.com.cn/user/374258"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/7/12 23:33:00"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"雲のようにそっとそっと","subtitle":{"text":["どこまでもずっとずっと前へ"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/rainbow-auto","instagram":null,"zhihu":"https://www.zhihu.com/people/rainbow-auto","twitter":null,"email":"caotianlang@outlook.com","fa-solid fa-code":"https://www.luogu.com.cn/user/374258"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":false},"tags":{"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"}}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/7/12 23:33:00"};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
     window.data = {"masonry":false};
   </script>
@@ -471,8 +471,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-26 22:17:54</span>
-            <span class="mobile">2024-08-26 22:17:54</span>
+            <span class="desktop">2024-08-27 08:17:21</span>
+            <span class="mobile">2024-08-27 08:17:21</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -500,13 +500,24 @@
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
             <h1 id="快速幂杂谈"><a href="#快速幂杂谈" class="headerlink" title="快速幂杂谈"></a>快速幂杂谈</h1><p>总觉得快速幂挺深刻的</p>
-<h2 id="普通快速幂"><a href="#普通快速幂" class="headerlink" title="普通快速幂"></a>普通快速幂</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">i64 <span class="title">ksm</span> <span class="params">(i64 a, i64 b, i64 mod)</span> </span>&#123;</span><br><span class="line">    i64 res = <span class="number">1</span>;</span><br><span class="line">    i64 base = a;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>) &#123; (res *= base) %= mod; &#125;</span><br><span class="line">        (base *= base) %= mod;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h2 id="普通快速幂"><a href="#普通快速幂" class="headerlink" title="普通快速幂"></a>普通快速幂</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">i64 <span class="title">ksm</span> <span class="params">(i64 a, i64 b, i64 mod)</span> </span>&#123;</span><br><span class="line">    i64 res = <span class="number">1</span>;</span><br><span class="line">    i64 base = a % mod;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>) &#123; (res *= base) %= mod; &#125;</span><br><span class="line">        (base *= base) %= mod;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>这是一个非常朴素的快速幂</p>
-<p>她可以在 $\mathcal{O (\log b)}$ 的时间复杂度内, 求出 $a ^ b \bmod mod$</p>
+<p>记 $b_i$ 表示 $b$ 二进制下的第 $i$ 位</p>
+<p>由于 $a ^ b &#x3D; a ^ {\sum 2 ^ i b_i} &#x3D; \prod a ^ {2 ^ i b_ i} $</p>
+<p>又因为存在递推式 $a ^ {2 ^ x} &#x3D; a ^ {2 ^ {x - 1}} \cdot a ^ {2 ^ {x - 1}} $</p>
+<p>所以她可以在 $\mathcal{O (\log b)}$ 的时间复杂度内, 求出 $a ^ b \bmod mod$</p>
 <p>但快速幂真的只能求 $a ^ b$ 吗?</p>
-<p><del>那也没有什么写这篇文章的必要性了</del></p>
-
+<p><del>那也没必要写这篇文章了对不对</del></p>
+<h2 id="广义-快速幂"><a href="#广义-快速幂" class="headerlink" title="(广义) 快速幂"></a>(广义) 快速幂</h2><p>事实上, 任何幺半群上的运算的幂都可以使用快速幂计算。</p>
+<p>形式化地, 我们定义某幺半群上有运算 $\circ$</p>
+<p>根据定义, 这个幺半群上存在单位元 $\varepsilon$ </p>
+<p>并且由于 $\circ$ 具有结合律, $(((a \circ a) \circ a) \cdots \circ a )$ 可以被拆分成长度为 $2$ 的幂次的几组, 然后再使用</p>
+<p>但这还只是抽象代数层面的解释。</p>
+<p>具体地, 除了乘法, 还有什么样的运算具有结合律呢?</p>
+<h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>这便是我们常说的龟速乘</p>
+<p>应用并不十分广泛, 主要用于</p>
+<h3 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h3><h3 id="min-卷积"><a href="#min-卷积" class="headerlink" title="(min, +) 卷积"></a>(min, +) 卷积</h3>
         </div>
 
         
@@ -520,7 +531,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-08-26 22:17:54
+                    :</strong> 2024-08-27 08:17:21
             </li>
         
         <li>
@@ -621,7 +632,7 @@
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
         <div class="page-title">快速幂杂谈</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E6%9D%82%E8%B0%88"><span class="nav-text">快速幂杂谈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-text">普通快速幂</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E6%9D%82%E8%B0%88"><span class="nav-text">快速幂杂谈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-text">普通快速幂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89-%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-text">(广义) 快速幂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95"><span class="nav-text">加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#min-%E5%8D%B7%E7%A7%AF"><span class="nav-text">(min, +) 卷积</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>
