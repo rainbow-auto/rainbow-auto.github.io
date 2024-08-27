@@ -22,6 +22,76 @@
 <h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>这便是我们常说的龟速乘</p>
 <p>应用并不十分广泛, 主要用于</p>
 <h3 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h3><h3 id="min-卷积"><a href="#min-卷积" class="headerlink" title="(min, +) 卷积"></a>(min, +) 卷积</h3>]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>警钟敲烂</title>
+    <url>/2023/08/26/%E8%AD%A6%E9%92%9F%E6%95%B2%E7%83%82/</url>
+    <content><![CDATA[<h1 id="做题常见错误"><a href="#做题常见错误" class="headerlink" title="做题常见错误"></a>做题常见错误</h1><blockquote>
+<p>亿些神奇的错误</p>
+<p>警钟<strong>敲烂</strong></p>
+</blockquote>
+<h2 id="关于链式前向星"><a href="#关于链式前向星" class="headerlink" title="关于链式前向星"></a>关于链式前向星</h2><ol>
+<li><p>用了链式前向星的题的最后几个点TLE&#x2F;MLE&#x2F;RE等等非常神奇的错误，一般都是链式前向星<strong>数组开小了</strong>！</p>
+</li>
+<li><p>有多个图时最好吧<code>Edge</code>封装成<code>Graph</code>结构体</p>
+ <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Graph</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">       <span class="type">int</span> from, to, pre; </span><br><span class="line">       <span class="type">int</span> w;</span><br><span class="line">    &#125; es[maxn];</span><br><span class="line">    <span class="type">int</span> last[maxn], cnt;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">inline</span> <span class="type">void</span> <span class="title function_">addEdge</span> <span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span> &#123;</span><br><span class="line">        es[++cnt] = Edge &#123; u, v, last[u], w &#125;;</span><br><span class="line">        last[u] = cnt;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">from</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].from; &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">to</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].to; &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">pre</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].pre; &#125; </span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">w</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].w; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>双向边…</p>
+</li>
+</ol>
+<h2 id="没用的数组别留着"><a href="#没用的数组别留着" class="headerlink" title="没用的数组别留着"></a>没用的数组别留着</h2><p>会 MLE 呜呜呜</p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ol>
+<li><p>一定要初始化</p>
+</li>
+<li><p>位置不要放错</p>
+</li>
+</ol>
+<p>啊啊啊</p>
+<p>而且尽量避免在 $T$ 较大时, 每次都 <code>memset ()</code> , 会 TLE &#x2F;kk</p>
+<h2 id="关于树上信息的统计"><a href="#关于树上信息的统计" class="headerlink" title="关于树上信息的统计"></a>关于树上信息的统计</h2><p>一般使用dfs</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dfs</span> <span class="params">(<span class="type">int</span> now)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// if (vis[now]) return; // 最好不放在这里</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = last[now]; i ; i = pre[i])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> t = to[i];</span><br><span class="line">        <span class="keyword">if</span> (vis[t]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* ... 树上信息统计(自上而下) ... */</span></span><br><span class="line"></span><br><span class="line">        dfs (t);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* ... 树上信息统计(自下而上) ... */</span>       </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>用<code>vis</code>判断是否是父亲时要把它放在<code>for</code>循环中<code>int t = to[i];</code>的后面而不是新的一遍递归的开始</p>
+<h2 id="十年OI一场空-不开long-long见祖宗"><a href="#十年OI一场空-不开long-long见祖宗" class="headerlink" title="十年OI一场空, 不开long long见祖宗"></a>十年OI一场空, 不开long long见祖宗</h2><p>2023.07.09 22:29 at QBXT SC 有幸见了两次祖宗</p>
+<p><strong>改ll要改全!!</strong></p>
+<p>upd: 现在已经改成类似jiangly的写法 <code>i64</code></p>
+<h2 id="P2891-Dining"><a href="#P2891-Dining" class="headerlink" title="P2891 Dining"></a>P2891 Dining</h2><p>我认为这题必须单独拿出来当典型</p>
+<p>同时犯两个有关返回值<strong>毒瘤</strong>错误调了2天晚上大概6h, 我真的…</p>
+<ol>
+<li><p>$Dinic$返回值竟然被搞成了$bool$, 呵呵</p>
+</li>
+<li><p>返回值缩进写错了, 竟然每遍for都要return, 呵呵呵呵呵呵</p>
+</li>
+</ol>
+<h2 id="if-for-while后面不要加分号"><a href="#if-for-while后面不要加分号" class="headerlink" title="if &#x2F; for &#x2F; while后面不要加分号"></a>if &#x2F; for &#x2F; while后面不要加分号</h2><p>这都什么毒瘤错误啊!!!!! </p>
+<h2 id="多测"><a href="#多测" class="headerlink" title="多测?!!"></a>多测?!!</h2><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><h2 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h2><p>用<code>vector</code>离散化的话</p>
+<p>正确写法是</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">descrete</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    vector &lt;<span class="type">int</span>&gt; temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        temp.<span class="built_in">push_back</span> (a[i].s);</span><br><span class="line">        temp.<span class="built_in">push_back</span> (a[i].t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">end</span> ());</span><br><span class="line">    m = <span class="built_in">unique</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">end</span> ()) - temp.<span class="built_in">begin</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        a[i].s = <span class="built_in">lower_bound</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">begin</span>() + m, a[i].s) - temp.<span class="built_in">begin</span>() + <span class="number">1</span>;</span><br><span class="line">        a[i].t = <span class="built_in">lower_bound</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">begin</span>() + m, a[i].t) - temp.<span class="built_in">begin</span>() + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意是<code>temp.begin() + m</code></p>
+<p><del>所以还是别用了罢</del></p>
+<h2 id="取模取模取模"><a href="#取模取模取模" class="headerlink" title="取模取模取模"></a>取模取模取模</h2><p>别把 $10^9 + 9$ 看成 $10^9 + 7$</p>
+<h2 id="pushUp-pushDown"><a href="#pushUp-pushDown" class="headerlink" title="pushUp!!! pushDown!!!"></a><code>pushUp</code>!!! <code>pushDown</code>!!!</h2><p>要用儿子结点的信息的时候必须先 <code>pushDown</code></p>
+<p>也就是说, 线段树 <code>modify()</code> 的时候也要 <code>pushDown()</code></p>
+<p>因为 <code>modify()</code> 了以后要 <code>pushUp()</code></p>
+<p>如果不先 <code>pushDown()</code> , 那么 <code>pushUp()</code> 更新当前节点的信息就会是错的</p>
+<h2 id="树剖"><a href="#树剖" class="headerlink" title="树剖"></a>树剖</h2><p>关于树剖 , <del>她似了</del> 我死了</p>
+<p>能在同一个代码里犯三个不同的树剖错误, 我也是很有实力的</p>
+<h3 id="dep-要从-1-开始"><a href="#dep-要从-1-开始" class="headerlink" title="$dep$ 要从 $1$ 开始 (?)"></a>$dep$ 要从 $1$ 开始 (?)</h3><p>即 <code>dep[1] = 1</code></p>
+<h3 id="siz-注意初始化"><a href="#siz-注意初始化" class="headerlink" title="$siz$ 注意初始化"></a>$siz$ 注意初始化</h3><p>每次先 <code>siz[now] = 1</code></p>
+<h3 id="跳链的时候-比较的应为-dep-top-u-和-dep-top-v"><a href="#跳链的时候-比较的应为-dep-top-u-和-dep-top-v" class="headerlink" title="跳链的时候, 比较的应为 dep[top[u]] 和 dep[top[v]]"></a>跳链的时候, 比较的应为 <code>dep[top[u]]</code> 和 <code>dep[top[v]]</code></h3><p>而不是 <code>dep[u]</code> 和 <code>dep[v]</code> 这样的复杂度是错的</p>
+<p><del>但是为什么这样写又 WA 又 TLE 啊?</del></p>
+<p><del>不应该只是 TLE 吗?</del></p>
+<h2 id="01-trie"><a href="#01-trie" class="headerlink" title="01-trie"></a>01-trie</h2><p>有个人 <code>tr[maxn &lt;&lt; 5][2]</code> 开了 $32$ 倍</p>
+<p>但是 <code>siz[maxn]</code> 了 (没开 $32$ 倍)</p>
+<p>所以这个人给大家的建议是</p>
+<p>定义一个 <code>struct</code> , 包括 <code>ch[2]</code> 和 <code>siz</code> 两个属性</p>
+<h2 id="位运算优先级"><a href="#位运算优先级" class="headerlink" title="位运算优先级"></a>位运算优先级</h2><p>包括但不限于 <code>&lt;&lt;</code> , <code>&gt;&gt;</code> , <code>&amp;</code> , <code>|</code>, <code>xor</code>, <code>^</code></p>
+<p>全部都要加括号来表示优先级 !!!!</p>
+]]></content>
   </entry>
   <entry>
     <title>蒟蒻の模板</title>
@@ -239,72 +309,8 @@
 
 <h3 id="点分治"><a href="#点分治" class="headerlink" title="点分治"></a>点分治</h3><p><del>淀粉质</del></p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">addEdge</span> <span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span> </span>&#123;</span><br><span class="line">	es[++cnt] = Edge &#123; u, v, last[u], w &#125;;</span><br><span class="line">	last[u] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> sum;</span><br><span class="line">std::bitset&lt;maxn&gt; removed;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> root;</span><br><span class="line"><span class="type">int</span> maxpart[maxn];</span><br><span class="line"><span class="type">int</span> siz[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getRoot</span> <span class="params">(<span class="type">int</span> now, <span class="type">int</span> fa)</span> </span>&#123;</span><br><span class="line">	siz[now] = <span class="number">1</span>; </span><br><span class="line">	maxpart[now] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = last[now]; i; i = es[i].pre) &#123;</span><br><span class="line">		<span class="type">int</span> t = es[i].v;</span><br><span class="line">		<span class="keyword">if</span> (t == fa) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span> (removed[t])	&#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">getRoot</span> (t, now);</span><br><span class="line">		siz[now] += siz[t];</span><br><span class="line">		maxpart[now] = std::<span class="built_in">max</span> (maxpart[now], siz[t]);</span><br><span class="line">	&#125;</span><br><span class="line">	maxpart[now] = std::<span class="built_in">max</span> (maxpart[now], sum - siz[now]);</span><br><span class="line">	<span class="keyword">if</span> (maxpart[now] &lt; maxpart[root]) &#123; root = now; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> disStack[maxn], dpos;</span><br><span class="line"><span class="type">int</span> removeStack[maxn], rpos;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> dis[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getDis</span> <span class="params">(<span class="type">int</span> now, <span class="type">int</span> fa)</span> </span>&#123;</span><br><span class="line">	disStack[++dpos] = dis[now];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = last[now]; i; i = es[i].pre) &#123;</span><br><span class="line">		<span class="type">int</span> t = es[i].v;</span><br><span class="line">		<span class="keyword">if</span> (t == fa) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">		<span class="keyword">if</span> (removed[t]) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line">		</span><br><span class="line">		dis[t] = dis[now] + es[i].w;</span><br><span class="line">		<span class="built_in">getDis</span> (t, now);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxv = <span class="number">100000005</span>;</span><br><span class="line">std::bitset&lt;maxv&gt; exist;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span> <span class="params">(<span class="type">int</span> now)</span> </span>&#123;</span><br><span class="line">	exist[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = last[now]; i; i = es[i].pre) &#123;</span><br><span class="line">		<span class="type">int</span> t = es[i].v;</span><br><span class="line">		<span class="keyword">if</span> (removed[t]) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line"></span><br><span class="line">		dis[t] = es[i].w;</span><br><span class="line">		<span class="built_in">getDis</span> (t, now);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= dpos; j++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;q : qs) &#123;</span><br><span class="line">				<span class="keyword">if</span> (q.k - disStack[j] &gt;= <span class="number">0</span>) &#123; q.ans |= exist[q.k - disStack[j]]; &#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (dpos) &#123;</span><br><span class="line">			<span class="type">int</span> top = disStack[dpos--];</span><br><span class="line">			exist[top] = <span class="literal">true</span>;</span><br><span class="line">			removeStack[++rpos] = top;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (rpos) &#123;</span><br><span class="line">		<span class="type">int</span> top = removeStack[rpos--];</span><br><span class="line">		exist[top] = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">divide</span> <span class="params">(<span class="type">int</span> now)</span> </span>&#123;</span><br><span class="line">	removed[now] = <span class="literal">true</span>;</span><br><span class="line">	<span class="built_in">solve</span> (now);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = last[now]; i; i = es[i].pre) &#123;</span><br><span class="line">		<span class="type">int</span> t = es[i].v;</span><br><span class="line">		<span class="keyword">if</span> (removed[t]) &#123; <span class="keyword">continue</span>; &#125;</span><br><span class="line"></span><br><span class="line">		sum = siz[t];</span><br><span class="line">		maxpart[root] = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">		<span class="built_in">getRoot</span> (t, now);</span><br><span class="line">		<span class="built_in">getRoot</span> (root, now); <span class="comment">// 实际上在getSiz</span></span><br><span class="line"></span><br><span class="line">		<span class="built_in">divide</span> (root);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>]]></content>
-  </entry>
-  <entry>
-    <title>警钟敲烂</title>
-    <url>/2023/08/26/%E8%AD%A6%E9%92%9F%E6%95%B2%E7%83%82/</url>
-    <content><![CDATA[<h1 id="做题常见错误"><a href="#做题常见错误" class="headerlink" title="做题常见错误"></a>做题常见错误</h1><blockquote>
-<p>亿些神奇的错误</p>
-<p>警钟<strong>敲烂</strong></p>
-</blockquote>
-<h2 id="关于链式前向星"><a href="#关于链式前向星" class="headerlink" title="关于链式前向星"></a>关于链式前向星</h2><ol>
-<li><p>用了链式前向星的题的最后几个点TLE&#x2F;MLE&#x2F;RE等等非常神奇的错误，一般都是链式前向星<strong>数组开小了</strong>！</p>
-</li>
-<li><p>有多个图时最好吧<code>Edge</code>封装成<code>Graph</code>结构体</p>
- <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Graph</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">       <span class="type">int</span> from, to, pre; </span><br><span class="line">       <span class="type">int</span> w;</span><br><span class="line">    &#125; es[maxn];</span><br><span class="line">    <span class="type">int</span> last[maxn], cnt;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">inline</span> <span class="type">void</span> <span class="title function_">addEdge</span> <span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span> &#123;</span><br><span class="line">        es[++cnt] = Edge &#123; u, v, last[u], w &#125;;</span><br><span class="line">        last[u] = cnt;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">from</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].from; &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">to</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].to; &#125;</span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">pre</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].pre; &#125; </span><br><span class="line">    <span class="keyword">inline</span> <span class="type">int</span> <span class="title function_">w</span> <span class="params">(<span class="type">int</span> i)</span> &#123; <span class="keyword">return</span> e[i].w; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>双向边…</p>
-</li>
-</ol>
-<h2 id="没用的数组别留着"><a href="#没用的数组别留着" class="headerlink" title="没用的数组别留着"></a>没用的数组别留着</h2><p>会 MLE 呜呜呜</p>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ol>
-<li><p>一定要初始化</p>
-</li>
-<li><p>位置不要放错</p>
-</li>
-</ol>
-<p>啊啊啊</p>
-<p>而且尽量避免在 $T$ 较大时, 每次都 <code>memset ()</code> , 会 TLE &#x2F;kk</p>
-<h2 id="关于树上信息的统计"><a href="#关于树上信息的统计" class="headerlink" title="关于树上信息的统计"></a>关于树上信息的统计</h2><p>一般使用dfs</p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dfs</span> <span class="params">(<span class="type">int</span> now)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// if (vis[now]) return; // 最好不放在这里</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = last[now]; i ; i = pre[i])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> t = to[i];</span><br><span class="line">        <span class="keyword">if</span> (vis[t]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* ... 树上信息统计(自上而下) ... */</span></span><br><span class="line"></span><br><span class="line">        dfs (t);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* ... 树上信息统计(自下而上) ... */</span>       </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>用<code>vis</code>判断是否是父亲时要把它放在<code>for</code>循环中<code>int t = to[i];</code>的后面而不是新的一遍递归的开始</p>
-<h2 id="十年OI一场空-不开long-long见祖宗"><a href="#十年OI一场空-不开long-long见祖宗" class="headerlink" title="十年OI一场空, 不开long long见祖宗"></a>十年OI一场空, 不开long long见祖宗</h2><p>2023.07.09 22:29 at QBXT SC 有幸见了两次祖宗</p>
-<p><strong>改ll要改全!!</strong></p>
-<p>upd: 现在已经改成类似jiangly的写法 <code>i64</code></p>
-<h2 id="P2891-Dining"><a href="#P2891-Dining" class="headerlink" title="P2891 Dining"></a>P2891 Dining</h2><p>我认为这题必须单独拿出来当典型</p>
-<p>同时犯两个有关返回值<strong>毒瘤</strong>错误调了2天晚上大概6h, 我真的…</p>
-<ol>
-<li><p>$Dinic$返回值竟然被搞成了$bool$, 呵呵</p>
-</li>
-<li><p>返回值缩进写错了, 竟然每遍for都要return, 呵呵呵呵呵呵</p>
-</li>
-</ol>
-<h2 id="if-for-while后面不要加分号"><a href="#if-for-while后面不要加分号" class="headerlink" title="if &#x2F; for &#x2F; while后面不要加分号"></a>if &#x2F; for &#x2F; while后面不要加分号</h2><p>这都什么毒瘤错误啊!!!!! </p>
-<h2 id="多测"><a href="#多测" class="headerlink" title="多测?!!"></a>多测?!!</h2><h2 id="清空"><a href="#清空" class="headerlink" title="清空"></a>清空</h2><h2 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h2><p>用<code>vector</code>离散化的话</p>
-<p>正确写法是</p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">descrete</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    vector &lt;<span class="type">int</span>&gt; temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        temp.<span class="built_in">push_back</span> (a[i].s);</span><br><span class="line">        temp.<span class="built_in">push_back</span> (a[i].t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">end</span> ());</span><br><span class="line">    m = <span class="built_in">unique</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">end</span> ()) - temp.<span class="built_in">begin</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        a[i].s = <span class="built_in">lower_bound</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">begin</span>() + m, a[i].s) - temp.<span class="built_in">begin</span>() + <span class="number">1</span>;</span><br><span class="line">        a[i].t = <span class="built_in">lower_bound</span> (temp.<span class="built_in">begin</span> (), temp.<span class="built_in">begin</span>() + m, a[i].t) - temp.<span class="built_in">begin</span>() + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>注意是<code>temp.begin() + m</code></p>
-<p><del>所以还是别用了罢</del></p>
-<h2 id="取模取模取模"><a href="#取模取模取模" class="headerlink" title="取模取模取模"></a>取模取模取模</h2><p>别把 $10^9 + 9$ 看成 $10^9 + 7$</p>
-<h2 id="pushUp-pushDown"><a href="#pushUp-pushDown" class="headerlink" title="pushUp!!! pushDown!!!"></a><code>pushUp</code>!!! <code>pushDown</code>!!!</h2><p>要用儿子结点的信息的时候必须先 <code>pushDown</code></p>
-<p>也就是说, 线段树 <code>modify()</code> 的时候也要 <code>pushDown()</code></p>
-<p>因为 <code>modify()</code> 了以后要 <code>pushUp()</code></p>
-<p>如果不先 <code>pushDown()</code> , 那么 <code>pushUp()</code> 更新当前节点的信息就会是错的</p>
-<h2 id="树剖"><a href="#树剖" class="headerlink" title="树剖"></a>树剖</h2><p>关于树剖 , <del>她似了</del> 我死了</p>
-<p>能在同一个代码里犯三个不同的树剖错误, 我也是很有实力的</p>
-<h3 id="dep-要从-1-开始"><a href="#dep-要从-1-开始" class="headerlink" title="$dep$ 要从 $1$ 开始 (?)"></a>$dep$ 要从 $1$ 开始 (?)</h3><p>即 <code>dep[1] = 1</code></p>
-<h3 id="siz-注意初始化"><a href="#siz-注意初始化" class="headerlink" title="$siz$ 注意初始化"></a>$siz$ 注意初始化</h3><p>每次先 <code>siz[now] = 1</code></p>
-<h3 id="跳链的时候-比较的应为-dep-top-u-和-dep-top-v"><a href="#跳链的时候-比较的应为-dep-top-u-和-dep-top-v" class="headerlink" title="跳链的时候, 比较的应为 dep[top[u]] 和 dep[top[v]]"></a>跳链的时候, 比较的应为 <code>dep[top[u]]</code> 和 <code>dep[top[v]]</code></h3><p>而不是 <code>dep[u]</code> 和 <code>dep[v]</code> 这样的复杂度是错的</p>
-<p><del>但是为什么这样写又 WA 又 TLE 啊?</del></p>
-<p><del>不应该只是 TLE 吗?</del></p>
-<h2 id="01-trie"><a href="#01-trie" class="headerlink" title="01-trie"></a>01-trie</h2><p>有个人 <code>tr[maxn &lt;&lt; 5][2]</code> 开了 $32$ 倍</p>
-<p>但是 <code>siz[maxn]</code> 了 (没开 $32$ 倍)</p>
-<p>所以这个人给大家的建议是</p>
-<p>定义一个 <code>struct</code> , 包括 <code>ch[2]</code> 和 <code>siz</code> 两个属性</p>
-<h2 id="位运算优先级"><a href="#位运算优先级" class="headerlink" title="位运算优先级"></a>位运算优先级</h2><p>包括但不限于 <code>&lt;&lt;</code> , <code>&gt;&gt;</code> , <code>&amp;</code> , <code>|</code>, <code>xor</code>, <code>^</code></p>
-<p>全部都要加括号来表示优先级 !!!!</p>
-]]></content>
+      <tags>
+        <tag>OI, 模板</tag>
+      </tags>
   </entry>
 </search>
