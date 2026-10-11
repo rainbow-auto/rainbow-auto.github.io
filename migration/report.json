@@ -1,0 +1,47 @@
+{
+  "published": [
+    "2025-Autumn-MX.md",
+    "2025-Summer-MX.md",
+    "ABC300-题解.md",
+    "Border-相关.md",
+    "CSP-S-2025.md",
+    "Contests.md",
+    "Counting.md",
+    "Diary.md",
+    "NOIP-2024-Day-10-训练.md",
+    "P13237-GCJ-2015-Finals-Merlin-QA.md",
+    "四毛子.md",
+    "容斥？.md",
+    "快速幂杂谈.md",
+    "扫描线求面积的一点细节.md",
+    "杂日选记.md",
+    "杂题选做.md",
+    "蒟蒻の模板.md",
+    "警钟敲烂.md",
+    "骗小孩的数论.md"
+  ],
+  "protected": [
+    "CSP-S-2024-游寄.md",
+    "NOIP-2022-游寄.md",
+    "Plan.md",
+    "Tricks.md"
+  ],
+  "drafts": [
+    "_.md",
+    "temp.md",
+    "temp.tex"
+  ],
+  "assets": [
+    "public/images/image.png",
+    "public/images/杂日选记/a861b6af169e29f016b7a9b2d562892c.png",
+    "public/images/2025-Summer-MX/image.png"
+  ],
+  "changes": [
+    "所有 Markdown 正文与元信息逐字复制；未编辑文章内容。",
+    "4 篇带 password 的文章移入 git 忽略的 content/private，构建时导出加密版本。",
+    "没有标题或日期的 _.md 与 temp.md 保留为本地草稿，不对外发布。",
+    "本地图片统一归入 public/images；旧相对图片路径在渲染阶段自动转换。",
+    "Hexo notel 提示框在渲染阶段转换为 Markdown 引用提示框。",
+    "正式文章继续使用 YYYY/MM/DD/原文件名/ 网址，保留旧站永久链接。"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "reference": "https://tufted-blog.pages.dev/",
+  "version": "Tufte CSS 1.8.0",
+  "sha256": {
+    "public/assets/vendor/tufte-css-1.8.0/tufte.css": "abfa0fb087f480372ec2d3b378cf402987e65f6fa3809ae662dee628c2244af6",
+    "public/assets/vendor/tufted.css": "e1bf5c1d0982f0af1803a359efcd10301b96342a56f22f0dc54ad2a61d59a4a7",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot": "c5f4c6b76fbd8caa40acd65589b976754831f28cf5a0ceb9fae1d653f27304c5",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.svg": "706440aadd9e8c5f2943508f3cd05c7b3b1948b77d2f9b3090812934eaf61294",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.ttf": "38cc5ee305a8d9e6dc1a1f0266af6746b6ac4c85ca2f77b051594a1f7dc3e426",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff": "ea6efd96090dc2d0be0a826d1f2b79b07ca9af21f6483f2f96694b761d669ddc",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot": "9b9840e25aab7df4d248162f843c0057987aae6025be351df8b02a606f6c8ec2",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.svg": "c27830187367dfe03e219ef849329d6cafe633314ba53cadad55a8289b8f2789",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.ttf": "fcc87c657ecac7efbba1776a16a1ccf60189d93819579be11af60984a7ab99bd",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff": "e5bae09f1cb8391fcd35b903fefd306d5294456872af87674b376fa897ded416",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot": "8443b33a021f7c4d04762482b9e262f58e7490f73ee3d5297c62ac8ca87db927",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.svg": "f3235930ecc8f5b86221b5d9250e983ac6b6cc23e31d1246f10c64dd931e2ae5",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf": "48a4c0e333ea34f975702a965db80c29bc831f215c3606f47b3fe14f53d0f638",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff": "be0f2c061cd8c57b38b5edd8c03dac72ca7d87fb5c3f7f5c32ed72dede39a601",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot": "87b77825d8360c3e5b4de8b3dbcba18259f5d535ff7b5d0180d143c95e5ef957",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg": "4bc2228866130e070677da5cc7eba9b174eecbbaac0f34068be24f78c10d5c82",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf": "cd229daa847df81e286943e4da3895df6e186b9379e71d487521fad56cf6a1c0",
+    "public/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff": "58d154747bfa14725671c667c034066242c19039b9e90180ef46ca5c984a1b05"
+  }
+}
