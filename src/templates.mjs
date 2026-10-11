@@ -14,6 +14,11 @@ const icons = {
 export function layout({ title, description = config.description, path = '/', nav = '', body, noindex = false, type = 'website', date }) {
   const pageTitle = path === '/' ? config.title : `${title} · ${config.title}`;
   const navigation = [['/', '首页', 'home'], ['/archives/', '归档', 'archives'], ['/tags/', '标签', 'tags'], ['/about/', '关于', 'about']];
+  const homepage = path === '/';
+  const navigationLinks = navigation.map(([href, text, id]) => `<a href="${link(href)}" ${nav === id ? 'aria-current="page"' : ''}>${text}</a>`).join('');
+  const searchButton = `<a class="icon-button" href="${link('/search/')}" aria-label="搜索文章">${icons.search}</a>`;
+  const themeButton = `<button class="icon-button" id="theme-toggle" aria-label="切换深浅色主题" type="button">${icons.moon}</button>`;
+  const header = `<header class="site-header"><a class="brand" href="${link('/')}">Rainbow-Automaton<span>算法 · 数学 · 随笔</span></a><nav aria-label="主导航">${navigationLinks}${searchButton}${themeButton}</nav></header>`;
   return `<!doctype html>
 <html lang="${config.language}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${e(pageTitle)}</title><meta name="description" content="${e(description)}"><meta name="author" content="${e(config.author)}">
@@ -23,8 +28,9 @@ ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 <script>try{const t=localStorage.getItem('blog-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch{document.documentElement.dataset.theme='light'}</script>
 <link rel="preload" href="${link('/assets/vendor/tufte-css-1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff')}" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="${link('/assets/vendor/tufte-css-1.8.0/tufte.css')}"><link rel="stylesheet" href="${link('/assets/vendor/tufted.css')}"><link rel="stylesheet" href="${link('/assets/tufted-theme.css')}"><link rel="stylesheet" href="${link('/assets/katex/katex.min.css')}"><link rel="stylesheet" href="${link('/assets/style.css')}"><link rel="stylesheet" href="${link('/assets/typography.css')}"><script src="${link('/assets/app.js')}" defer></script>
-</head><body data-base="${e(base)}"><a class="skip-link" href="#main">跳到正文</a>
-<header class="site-header"><a class="brand" href="${link('/')}">Rainbow-Automaton<span>算法 · 数学 · 随笔</span></a><nav aria-label="主导航">${navigation.map(([href, text, id]) => `<a href="${link(href)}" ${nav === id ? 'aria-current="page"' : ''}>${text}</a>`).join('')}<a class="icon-button" href="${link('/search/')}" aria-label="搜索文章">${icons.search}</a><button class="icon-button" id="theme-toggle" aria-label="切换深浅色主题" type="button">${icons.moon}</button></nav></header>
+${homepage ? `<link rel="stylesheet" href="${link('/assets/home.css')}">` : ''}
+</head><body data-base="${e(base)}" ${homepage ? 'class="homepage"' : ''}><a class="skip-link" href="#main">跳到正文</a>
+${header}
 <main id="main">${body}</main>
 <footer class="site-footer"><span>© ${new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: config.timezone }).format(new Date())} <a href="${e(config.github)}">${e(config.author)}</a></span><span><a href="${link('/feed.xml')}">RSS</a><span class="footer-dot">·</span>Inspired by <a href="https://github.com/Yousa-Mirage/Tufted-Blog-Template">Tufted</a></span></footer>
 <a class="back-top" href="#" aria-label="回到顶部">↑</a></body></html>`;
@@ -45,8 +51,11 @@ export function articleBody(post, rendered, neighbors = {}) {
 export function home(posts, page = 1) {
   const count = Math.ceil(posts.length / config.pageSize);
   const selected = posts.slice((page - 1) * config.pageSize, page * config.pageSize);
-  return `<section class="home-intro"><div class="reading-column"><p class="eyebrow">RAINBOW’S NOTEBOOK <span> / SINCE 2022</span></p><h1>一些思考，<br>一些记录<span class="title-period">。</span></h1><p class="intro-description">${e(config.description)}<br>把想明白的写下来，也把尚未想明白的留下。</p></div><aside class="intro-margin"><div class="margin-mark">∑</div><p>解题之外，<br>也记下思考的过程。</p><span class="muted">${posts.length} 篇文章 · 2022—${posts[0]?.date.slice(0,4) || '2026'}</span><a href="${link('/archives/')}">翻阅全部记录 ↗</a></aside></section>
-  <section class="post-list"><div class="section-label"><span>${page === 1 ? '最近的记录' : `记录 · 第 ${page} 页`}</span><span class="muted">按时间倒序</span></div>${selected.map(p => postCard(p)).join('')}<nav class="list-pagination" aria-label="文章列表分页">${page > 1 ? `<a href="${link(page === 2 ? '/' : `/page/${page - 1}/`)}">← 上一页</a>` : '<span></span>'}<span>${page} / ${count}</span>${page < count ? `<a href="${link(`/page/${page + 1}/`)}">下一页 →</a>` : '<span></span>'}</nav></section>`;
+  const intro = config.homeIntro;
+  const photoUrl = /^https?:\/\//.test(intro.image) ? intro.image : link(intro.image.startsWith('/') ? intro.image : '/' + intro.image);
+  const photoFit = intro.imageFit === 'contain' ? 'contain' : 'cover';
+  const opening = page === 1 ? `<section class="home-intro home-intro-with-photo" aria-labelledby="intro-title"><div class="reading-column"><p class="eyebrow">RAINBOW’S NOTEBOOK <span> / SINCE 2022</span></p><h1 id="intro-title" lang="ja">${intro.titleLines.map(e).join('<br>')}</h1><p class="intro-description" lang="ja">${e(intro.subtitle)}</p></div><aside class="intro-margin home-photo"><figure class="home-photo-frame" style="--photo-ratio:${e(intro.imageAspectRatio)};--photo-fit:${photoFit};--photo-position:${e(intro.imagePosition)}"><img class="home-photo-image" src="${e(photoUrl)}" alt="${e(intro.imageAlt)}" decoding="async" fetchpriority="high">${intro.imageCaption ? `<figcaption>${e(intro.imageCaption)}</figcaption>` : ''}</figure><div class="home-photo-meta"><span class="muted">${posts.length} 篇文章 · 2022—${posts[0]?.date.slice(0,4) || '2026'}</span><a href="${link('/archives/')}">翻阅全部记录 ↗</a></div></aside></section>` : `<header class="page-heading"><p class="eyebrow">RAINBOW’S NOTEBOOK</p><h1>全部记录</h1></header>`;
+  return `${opening}<section class="post-list" id="recent-posts"><div class="section-label"><span>${page === 1 ? '最近的记录' : `记录 · 第 ${page} 页`}</span><span class="muted">按时间倒序</span></div>${selected.map(p => postCard(p)).join('')}<nav class="list-pagination" aria-label="文章列表分页">${page > 1 ? `<a href="${link(page === 2 ? '/' : `/page/${page - 1}/`)}">← 上一页</a>` : '<span></span>'}<span>${page} / ${count}</span>${page < count ? `<a href="${link(`/page/${page + 1}/`)}">下一页 →</a>` : '<span></span>'}</nav></section>`;
 }
 export function archive(posts, title = '归档', subtitle = `${posts.length} 篇记录，按年份收好。`) {
   const groups = Map.groupBy(posts, p => p.date.slice(0, 4));

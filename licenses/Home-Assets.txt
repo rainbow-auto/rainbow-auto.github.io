@@ -1,0 +1,20 @@
+Home assets migrated without modification from the author's existing Hexo blog:
+hexo-theme-redefine/source/images/wallhaven-wqery6-light.webp
+hexo-theme-redefine/source/images/wallhaven-wqery6-dark.webp
+hexo-theme-redefine/source/fonts/Chillax/Chillax-Variable.woff2
+hexo-theme-redefine/source/fonts/Geist/GeistVF.woff2
+
+Original package license: Hexo-Theme-Redefine.txt.
+
+Font attribution reproduced from the original font CSS:
+
+Font Family: Chillax
+Designed by: Manushi Parikh
+URL: https://www.fontshare.com/fonts/chillax
+Copyright 2023 Indian Type Foundry
+Font Style: Chillax Variable (Variable font)
+
+Geist Variable v1.3.0
+By Vercel
+
+Font and image rights remain with their respective owners.

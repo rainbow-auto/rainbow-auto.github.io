@@ -1,0 +1,83 @@
+/* Paper notebook introduction, with a replaceable photograph in the margin. */
+.home-intro-with-photo {
+  display: grid;
+  grid-template-columns: minmax(0, 64%) minmax(0, 26%);
+  column-gap: 10%;
+  align-items: center;
+}
+.home-intro-with-photo > .reading-column { width: 100%; }
+.home-intro-with-photo h1 {
+  font-family: inherit;
+  font-size: 4.6rem;
+  font-weight: bold;
+  line-height: 1.27;
+  letter-spacing: 0.015em;
+  margin: 0 0 26px;
+  overflow-wrap: normal;
+}
+.home-intro-with-photo .intro-description {
+  font-family: inherit;
+  margin: 0;
+  text-align: left;
+  color: var(--muted);
+}
+.home-intro-with-photo .home-photo {
+  position: static;
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.home-photo-frame {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  box-shadow: 0 3px 8px #28251905, 0 12px 30px #2825190a;
+}
+.home-photo-frame img.home-photo-image {
+  display: block;
+  position: static;
+  transform: none;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: var(--photo-ratio, 4 / 5);
+  object-fit: var(--photo-fit, cover);
+  object-position: var(--photo-position, 50% 50%);
+  border: 1px solid var(--rule);
+  background: var(--theme-code-bg);
+}
+.home-photo-frame figcaption {
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 12px 0 0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--muted);
+}
+.home-photo-meta { margin-top: 20px; }
+.home-photo-meta .muted { margin-bottom: 13px; font-size: 0.85rem; }
+.home-photo-meta a { font-size: 0.95rem; }
+html[data-theme=dark] .home-photo-frame {
+  box-shadow: 0 3px 8px #0002, 0 12px 30px #0003;
+}
+@media (max-width: 1000px) and (min-width: 761px) {
+  .home-intro-with-photo { grid-template-columns: minmax(0, 62%) minmax(0, 30%); column-gap: 8%; }
+  .home-intro-with-photo h1 { font-size: 4.25rem; }
+}
+@media (max-width: 760px) {
+  .home-intro-with-photo { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .home-intro-with-photo h1 { font-size: clamp(2.7rem, 10vw, 3.1rem); }
+  .home-intro-with-photo .home-photo { max-width: 290px; justify-self: center; }
+  .home-photo-frame { padding: 10px; }
+  .home-photo-meta { text-align: center; }
+}
+@media print {
+  .home-photo-frame { box-shadow: none; }
+}

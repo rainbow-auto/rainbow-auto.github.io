@@ -8,4 +8,15 @@ export default {
   github: 'https://github.com/rainbow-auto',
   timezone: 'Asia/Shanghai',
   pageSize: 10,
+  homeIntro: {
+    titleLines: ['雲のように', 'そっとそっと'],
+    subtitle: 'どこまでもずっとずっと前へ',
+    // 换图入口：将图片放入 public/images/home/，然后修改这里的路径。
+    image: '/images/home/photo.webp',
+    imageAlt: '山林与湖畔',
+    imageCaption: '', // 可选的相框说明
+    imageAspectRatio: '4 / 5', // 宽 / 高，例如 '3 / 4'、'1 / 1'、'4 / 3'
+    imageFit: 'cover', // cover：铺满相框；contain：显示整张图片
+    imagePosition: '50% 50%', // 裁剪焦点，例如 '50% 30%'
+  },
 };
