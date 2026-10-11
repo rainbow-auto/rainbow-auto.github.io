@@ -1,5 +1,5 @@
 export default {
-  title: "Rainbow-Automaton’s blog",
+  title: "ctlqwq's blog",
   author: 'rainbow-auto',
   url: 'https://rainbow-auto.github.io',
   base: '', // 项目子目录部署时改成 '/repo-name'；个人主页留空
@@ -8,6 +8,10 @@ export default {
   github: 'https://github.com/rainbow-auto',
   timezone: 'Asia/Shanghai',
   pageSize: 10,
+  deploy: {
+    remote: 'origin',
+    branch: 'master', // 推送此分支后，GitHub Actions 自动发布
+  },
   homeIntro: {
     titleLines: ['雲のように', 'そっとそっと'],
     subtitle: 'どこまでもずっとずっと前へ',

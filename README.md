@@ -73,9 +73,22 @@ $$
 
 ### GitHub Pages（原博客地址）
 
-1. 将这个目录的文件提交到 `rainbow-auto/rainbow-auto.github.io` 的 `main` 或 `master` 分支；发布前在本地运行 `npm run check`，将 `content/encrypted/` 一并提交。
-2. 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
-3. 随附 `.github/workflows/deploy.yml` 会安装依赖、构建、验证并部署 `dist/`。访问 https://rainbow-auto.github.io 。
+在博客目录运行：
+
+```sh
+npm run deploy
+```
+
+命令会先构建并检查公式、链接、图片与加密输出，然后自动提交当前目录中所有未被 Git 忽略的修改（包括删除的文件），推送到 `origin/master`。随附的 GitHub Actions 接着构建并发布 `dist/`，网站地址为 https://rainbow-auto.github.io 。本地密码原文、草稿、`.env` 和 `dist/` 不会上传；密码文章会上传更新后的加密文件。
+
+首次使用需在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**，并确保本机 Git 已设置提交身份且能够向该仓库推送；沿用已有 Git 登录即可。部署目标在 `site.config.mjs` 的 `deploy.remote` 和 `deploy.branch` 中设置，默认对应原博客仓库。若改用其他分支，也需修改 `.github/workflows/deploy.yml` 的触发分支。
+
+```sh
+npm run deploy -- --dry-run                   # 构建并检查，查看待提交文件；不提交、不推送
+npm run deploy -- --message "更新数学笔记"      # 自定义提交说明
+```
+
+检查失败会停止发布；推送失败会保留本地提交，可解决登录、网络或分支冲突后重试。命令采用普通推送，不覆盖远程历史。推送成功后，在仓库 **Actions** 页面查看网站发布进度。
 
 `site.config.mjs` 已使用旧站地址。个人主页部署不需要改 `base`。部署到项目仓库子目录时，Actions 会自动传入 Pages 的 `base_path`；本地可用 `BLOG_BASE=/repo-name npm run check` 测试。自定义域名时修改 `url`，并根据 GitHub Pages 的域名设置添加 `public/CNAME`。
 
@@ -110,7 +123,7 @@ content/drafts/      本地草稿与附件（Git 忽略）
 content/about.md     关于页面
 public/              图片、图标和主题资源
 src/                 Markdown 渲染、加密、页面模板
-scripts/             构建、预览、新文章、迁移
+scripts/             构建、预览、新文章、迁移、一键部署
 tests/               公式与迁移验证
 site.config.mjs      网站设置
 dist/                可以直接部署的构建产物
